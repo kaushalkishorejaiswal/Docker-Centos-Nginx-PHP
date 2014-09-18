@@ -32,9 +32,9 @@ sudo docker build -t ##NAME_OF_YOUR_DOCKER_IMAGE## .
 </pre>
 
 <b>Step 4 :</b> Create an Centos, Nginx, PHP-FPM Installed Container from the image
+<pre>
 <b>Command Syntax: </b>
 sudo docker run --name [container name] -p [port to access (New Port):port exposed(original port)] -i -t [image name]
-<pre>
 <b>Command:</b>
 sudo docker run --name ##NAME_OF_YOUR_DOCKER_CONTAINER## -d -p 8082:80 ##NAME_OF_YOUR_DOCKER_IMAGE##
 </pre>
