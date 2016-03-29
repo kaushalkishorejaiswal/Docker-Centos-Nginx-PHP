@@ -4,10 +4,13 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM centos:latest
+FROM centos:7
 
 # File Author / Maintainer
 MAINTAINER Kaushal Kishore <kaushal.rahuljaiswal@gmail.com>
+
+# Update library
+RUN yum -y update
 
 # Add the ngix and PHP dependent repository
 ADD nginx.repo /etc/yum.repos.d/nginx.repo
@@ -16,7 +19,9 @@ ADD nginx.repo /etc/yum.repos.d/nginx.repo
 RUN yum -y install nginx
 
 # Installing PHP
-RUN yum -y --enablerepo=remi,remi-php56 install nginx php-fpm php-common
+RUN yum -y install epel-release
+RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm \
+&& yum -y --enablerepo=remi,remi-php70w install nginx php70w-cli php70w-devel php70w-fpm php70w-gd php70w-mbstring php70w-mcrypt php70w-mysql php70w-pear php70w-opcache php70w-common
 
 # Installing supervisor
 RUN yum install -y python-setuptools
